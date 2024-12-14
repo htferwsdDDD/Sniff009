@@ -1,7 +1,11 @@
-from flask import Flask, request, render_template, jsonify
+from flask import Flask, render_template
 
 app = Flask(__name__)
 
+@app.route('/')
+def home():
+    return render_template('index.html')
+    
 components = {
     "CPU": {"budget": "AMD Ryzen 5 5600X", "mid": "AMD Ryzen 7 5800X3D", "high": "Intel Core i7-13700KF"},
     "GPU": {"budget": "NVIDIA RTX 3060 Ti", "mid": "NVIDIA RTX 4070", "high": "AMD RX 7900 XTX"},
