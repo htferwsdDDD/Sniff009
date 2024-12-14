@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gaming-PC-Konfigurator</title>
+</head>
+<body>
+    <h1>Gaming-PC-Konfigurator</h1>
+    <label for="budget">Budget:</label>
+    <input type="text" id="budget" placeholder="z.B. mid"><br><br>
+    <label for="game">Spiel:</label>
+    <input type="text" id="game" placeholder="z.B. Fortnite"><br><br>
+    <button onclick="getBuild()">Konfiguration anfordern</button>
+    <pre id="result"></pre>
+
+    <script>
+        async function getBuild() {
+            const budget = document.getElementById("budget").value;
+            const game = document.getElementById("game").value;
+
+            const response = await fetch("https://DEINE-RENDER-URL/build", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ budget, game })
+            });
+
+            const data = await response.json();
+            document.getElementById("result").innerText = JSON.stringify(data, null, 2);
+        }
+    </script>
+</body>
+</html>
