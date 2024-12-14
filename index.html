@@ -1,33 +1,28 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="de">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gaming-PC-Konfigurator</title>
+    <title>PC Build Empfehlung</title>
 </head>
 <body>
-    <h1>Gaming-PC-Konfigurator</h1>
-    <label for="budget">Budget:</label>
-    <input type="text" id="budget" placeholder="z.B. mid"><br><br>
-    <label for="game">Spiel:</label>
-    <input type="text" id="game" placeholder="z.B. Fortnite"><br><br>
-    <button onclick="getBuild()">Konfiguration anfordern</button>
-    <pre id="result"></pre>
+    <h1>PC Build Empfehlungen basierend auf deinem Budget</h1>
 
-    <script>
-        async function getBuild() {
-            const budget = document.getElementById("budget").value;
-            const game = document.getElementById("game").value;
+    <form action="/build" method="POST">
+        <label for="budget">Wähle dein Budget:</label>
+        <select name="budget" id="budget">
+            <option value="budget">Budget</option>
+            <option value="mid">Mittel</option>
+            <option value="high">Hoch</option>
+        </select>
 
-            const response = await fetch("https://DEINE-RENDER-URL/build", {
-                method: "POST",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({ budget, game })
-            });
+        <br><br>
 
-            const data = await response.json();
-            document.getElementById("result").innerText = JSON.stringify(data, null, 2);
-        }
-    </script>
+        <button type="submit">Empfohlene Komponenten anzeigen</button>
+    </form>
+
+    <br>
+
+    <!-- Hier könnte eine Platzierung für die Antwort sein, z.B. mit JavaScript -->
 </body>
 </html>
