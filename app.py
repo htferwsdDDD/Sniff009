@@ -2,30 +2,22 @@ from flask import Flask, request, jsonify
 
 app = Flask(__name__)
 
+# Route für die Startseite
+@app.route('/')
+def home():
+    return 'Willkommen auf meiner Seite!'
+
+# Deine bestehenden Routen (z.B. für PC-Bauten)
 components = {
-    "CPU": {
-        "budget": "AMD Ryzen 5 5600X",
-        "mid": "AMD Ryzen 7 5800X3D",
-        "high": "Intel Core i7-13700KF"
-    },
-    "GPU": {
-        "budget": "NVIDIA RTX 3060 Ti",
-        "mid": "NVIDIA RTX 4070",
-        "high": "AMD RX 7900 XTX"
-    },
+    "CPU": {"budget": "AMD Ryzen 5 5600X", "mid": "AMD Ryzen 7 5800X3D", "high": "Intel Core i7-13700KF"},
+    "GPU": {"budget": "NVIDIA RTX 3060 Ti", "mid": "NVIDIA RTX 4070", "high": "AMD RX 7900 XTX"},
     "RAM": "16 GB DDR4-3600 MHz",
     "SSD": "1 TB NVMe SSD",
     "PSU": "750W 80+ Gold",
     "Case": "Cooler Master NR600"
 }
 
-fps_estimates = {
-    "Fortnite": {
-        "budget": 180,
-        "mid": 280,
-        "high": 360
-    }
-}
+fps_estimates = {"Fortnite": {"budget": 180, "mid": 280, "high": 360}}
 
 @app.route('/build', methods=['POST'])
 def recommend_build():
